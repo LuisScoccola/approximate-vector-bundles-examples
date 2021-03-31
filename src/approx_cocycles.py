@@ -10,11 +10,11 @@ def best_orth_trans(sub1, sub2) :
 
 
 
-def approx_cocycle_vr_death(pointcloud, bases, tolerance = 0.5) :
+def approx_cocycle_vr_death(pointcloud, bases, tolerance = 0.5, max_dth = np.inf) :
 
     kd_tree = KDTree(pointcloud, leaf_size=2)
 
-    death = np.inf
+    death = max_dth
     
     n = len(bases)
     for i in range(n) :

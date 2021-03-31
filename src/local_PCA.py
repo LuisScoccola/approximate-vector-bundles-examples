@@ -26,6 +26,8 @@ def local_pca(k, pointcloud, n_components = 2, variance_thresh = 0.75, max_compo
     recovered_variances = []
 
     lp = local_pointclouds(k, pointcloud)
+
+    max_components = min(max_components, len(pointcloud[0]))
     
     for i in range(len(pointcloud)) :
         local = lp[i]
@@ -48,7 +50,7 @@ def local_pca(k, pointcloud, n_components = 2, variance_thresh = 0.75, max_compo
     dimss = np.array(dimss)
     recovered_variances = np.array(recovered_variances)
     
-    print("To recover " + str(variance_thresh) + " of the variance, need " + str(np.average(dimss)) + " dimensions on averge.")
+    #print("To recover " + str(variance_thresh) + " of the variance, need " + str(np.average(dimss)) + " dimensions on averge.")
     print("With " + str(n_components) + " components, recover " + str(np.average(recovered_variances)) + " of the variance on averge.")
 
     return(np.array(components))
