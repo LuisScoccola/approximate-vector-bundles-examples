@@ -1,6 +1,7 @@
 import numpy as np
 import flint
 
+
 def solve_system_mod(a, mod = 2) :
     n = len(a)
     m = len(a[0])

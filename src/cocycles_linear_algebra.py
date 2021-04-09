@@ -3,7 +3,8 @@ from sklearn.neighbors import KDTree
 from src.approx_cocycles import *
 
 
-### SW1
+# Construct linear system to solve for 1-cocycle [cocycle] in terms of persistent cohomology generators [coh_gen]
+# (Euclidean data)
 def matrix_from_vertices_gen_cocycle(pointcloud, coh_gen, deaths, cocycle, co_death) :
 
     N = len(pointcloud)
@@ -59,7 +60,8 @@ def matrix_from_vertices_gen_cocycle(pointcloud, coh_gen, deaths, cocycle, co_de
     return M
 
 
-### E
+# Construct linear system to solve for 2-cocycle [cocycle] in terms of persistent cohomology generators [coh_gen]
+# (Euclidean data)
 def matrix_from_edges_gen_cocycle(pointcloud, coh_gen, deaths, cocycle, co_death) :
     # assumes the cocycle doesn't have edges after co_death
 
@@ -114,6 +116,7 @@ def matrix_from_edges_gen_cocycle(pointcloud, coh_gen, deaths, cocycle, co_death
 
     return M
 
+
 def sign_perm(i,j,k) :
     if i < j :
         if i < k :
@@ -127,7 +130,8 @@ def sign_perm(i,j,k) :
             return 1
 
 
-### E_
+# Construct linear system to solve for 2-cocycle [cocycle] in terms of persistent cohomology generators [coh_gen]
+# (for point cloud given by distance matrix)
 def matrix_from_edges_gen_cocycle_(dist_mat, coh_gen, deaths, cocycle, co_death) :
 
     N = len(dist_mat)

@@ -3,7 +3,7 @@ from sklearn.neighbors import KDTree
 import numpy as np
 
 
-# local pointclouds of Euclidean pointcloud
+# construct local pointclouds of a Euclidean pointcloud
 def local_pointclouds(k, pointcloud) :
     kd_tree = KDTree(pointcloud, leaf_size=2)
 
@@ -18,7 +18,7 @@ def local_pointclouds(k, pointcloud) :
     return np.array([ local_pointcloud(i,k) for i in range(len(pointcloud)) ])
 
 
-
+# apply PCA to local pointclouds of a Euclidean pointcloud
 def local_pca(k, pointcloud, n_components = 2, variance_thresh = 0.75, max_components = 5) :
 
     components = []

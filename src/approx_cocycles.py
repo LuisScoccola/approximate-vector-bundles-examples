@@ -4,12 +4,14 @@ from src.pin import *
 from sklearn.neighbors import KDTree
 
 
+# Solve Procrustes problem
 def best_orth_trans(sub1, sub2) :
     u, s, vh = np.linalg.svd(sub1 @ sub2.T)
     return (u @ vh)
 
-
-
+# Compute maximum t such that the approximate cocycle associated to the approximate local
+# trivialization given by [bases] is a [tolerance]-approximate cocycle
+# (Euclidean data)
 def approx_cocycle_vr_death(pointcloud, bases, tolerance = 0.5, max_dth = np.inf) :
 
     kd_tree = KDTree(pointcloud, leaf_size=2)
@@ -38,7 +40,8 @@ def approx_cocycle_vr_death(pointcloud, bases, tolerance = 0.5, max_dth = np.inf
     return death
 
 
-
+# Compute first Stiefel--Whitney class of approximate cocycle
+# (Euclidean data)
 def approx_sw1_vr_from_local_bases(pointcloud, bases, max_eps) :
     cocycle = []
     n = len(pointcloud)
@@ -59,6 +62,8 @@ def approx_sw1_vr_from_local_bases(pointcloud, bases, max_eps) :
     return np.array(cocycle)
 
 
+# Compute Euler class of approximate cocycle with values in SO(2)
+# (Euclidean data)
 def approx_eu_vr_from_local_bases(pointcloud, bases, max_eps) :
     cocycle = []
     n = len(pointcloud)
@@ -97,7 +102,8 @@ def approx_eu_vr_from_local_bases(pointcloud, bases, max_eps) :
     return np.array(cocycle)
 
 
-
+# Compute second Stiefel--Whitney class of approximate cocycle
+# (Euclidean data)
 def approx_sw2_vr_from_local_bases(pointcloud, bases, max_eps) :
     cocycle = []
     n = len(pointcloud)
@@ -160,7 +166,8 @@ def approx_sw2_vr_from_local_bases(pointcloud, bases, max_eps) :
 def ordered_neighbors_dist_mat(dist_mat) :
     return np.argsort(dist_mat, axis=1)
 
-
+# Compute maximum t such that the approximate cocycle [cocycle] is a [tolerance]-approximate cocycle
+# (for point cloud given by distance matrix)
 def approx_cocycle_vr_death_(dist_mat, cocycle, tolerance = 0.5) :
 
     ordered_neighbors_index = ordered_neighbors_dist_mat(dist_mat)
@@ -198,6 +205,8 @@ def approx_cocycle_vr_death_(dist_mat, cocycle, tolerance = 0.5) :
     return death
 
 
+# Compute second Stiefel--Whitney class of approximate cocycle
+# (for point cloud given by distance matrix)
 def approx_sw2_vr_from_local_bases_(dist_mat, rots, max_eps) :
     cocycle = []
     n = len(dist_mat)
@@ -254,6 +263,9 @@ def approx_sw2_vr_from_local_bases_(dist_mat, rots, max_eps) :
 
     return np.array(cocycle)
 
+
+# Compute Euler class of approximate cocycle with values in SO(2)
+# (for point cloud given by distance matrix)
 def approx_eu_vr_from_local_bases_(dist_mat, rots, max_eps) :
     cocycle = []
     n = len(dist_mat)
