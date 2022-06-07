@@ -4,4 +4,4 @@ Required python packages: ripser, persim, matplotlib, python-flint (which requir
 
 Please see the notebooks for the examples and https://arxiv.org/abs/2104.07563 for a description of the algorithms.
 
-Authors: Luis Scoccola and Jose A. Perea
+Author: Luis Scoccola
